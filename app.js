@@ -7,7 +7,13 @@ const path = require("path");
 // Initialize Express and create an HTTP server
 const app = express();
 const server = http.createServer(app);
-const io = socket(server);
+const io = socket(server, {
+  cors: {
+    origin: "*", // Change to your domain when deployed
+    methods: ["GET", "POST"]
+  }
+});
+
 
 // Port for deployment (Render provides the PORT environment variable)
 const PORT = process.env.PORT || 3000;
